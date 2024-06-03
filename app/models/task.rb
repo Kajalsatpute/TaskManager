@@ -9,7 +9,6 @@ class Task < ApplicationRecord
   private
 
   def schedule_deadline_alerts
-    binding.pry
     return if state == 'Done'
     
     DeadlineAlertJob.set(wait_until: (deadline - 1.day)).perform_later(id, '1 day')
