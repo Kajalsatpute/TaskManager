@@ -1,0 +1,17 @@
+<%= button_to "logout", destroy_user_session_path, method: :delete  %>
+<h1>Tasks</h1>
+
+<%= link_to 'New Task', new_task_path %>
+
+<ul>
+  <% if @tasks.present? %>
+    <% @tasks.each do |task| %>
+      <li>
+        <%= link_to task.title, task %>
+        (<%= task.state %>)
+        <%= link_to 'Edit', edit_task_path(task) %> |
+        <%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
